@@ -14,6 +14,23 @@ export interface VerificationMetadata {
   contractorName: string;
   contractorCompany?: string;
   history: VerificationHistoryEntry[];
+  contractorSubmittedDetails?: {
+    wage: number;
+    hoursWorked: number;
+    location: string;
+    date: string;
+    description: string;
+    submittedAt: string;
+  };
+  detailsMatched?: boolean;
+}
+
+export interface ContractorMessage {
+  id: string;
+  workerId: string;
+  contractorName: string;
+  question: string;
+  createdAt: string;
 }
 
 export interface VerificationReport {

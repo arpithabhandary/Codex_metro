@@ -19,7 +19,7 @@ export function VerificationDetails({ recordId }: { recordId: string }) {
     if (!record || working) return;
     if (decision !== "approve" && !reason.trim()) return;
     setWorking(true);
-    const updated = decision === "approve" ? await approveWorkRecord(record, records) : updateWorkRecordStatus(record, decision === "reject" ? "Rejected" : "Requested changes", reason.trim());
+    const updated = decision === "approve" ? await approveWorkRecord(record, records, { wage: record.wage, hoursWorked: record.hoursWorked, location: record.location, date: record.date, description: record.description }) : updateWorkRecordStatus(record, decision === "reject" ? "Rejected" : "Requested changes", reason.trim());
     const next = records.map((item) => item.id === record.id ? updated : item); persistRecords(next); setRecords(next);
     if (updated.status === "Verified") await refreshVerifiedPortfolio(next);
     setWorking(false);
