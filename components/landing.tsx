@@ -21,7 +21,7 @@ export function Landing() {
   return <div className="overflow-hidden bg-[#f7faff]">
     <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
       <a href="#top" className="flex items-center gap-2.5" aria-label="Kai home"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 text-lg font-extrabold text-white shadow-lg shadow-blue-200">K</span><span className="font-[family-name:'Plus_Jakarta_Sans'] text-xl font-extrabold tracking-tight text-slate-900">kai<span className="text-blue-600">.</span></span></a>
-      <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex"><a href="#how-it-works" className="hover:text-blue-600">How it works</a><a href="#why-kai" className="hover:text-blue-600">Why Kai</a><a href="#passport" className="hover:text-blue-600">Work passport</a></nav>
+      <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex"><a href="#how-it-works" className="hover:text-blue-600">How it works</a><a href="#why-kai" className="hover:text-blue-600">Why Kai</a><a href="#passport" className="hover:text-blue-600">Work passport</a><a href="/contractor" className="hover:text-blue-600">Contractor portal</a></nav>
       <a href="#dashboard" className={buttonVariants({ variant: "secondary", size: "sm" })}>Open workspace <ArrowRight className="h-3.5 w-3.5" /></a>
     </header>
 

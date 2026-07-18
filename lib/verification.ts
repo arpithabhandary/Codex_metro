@@ -1,6 +1,6 @@
 import type { VerificationReport, VerificationStatus, WorkRecord } from "@/types/work";
 
-export type WorkerVerificationInput = Omit<WorkRecord, "id" | "createdAt" | "verification" | "verificationStatus">;
+export type WorkerVerificationInput = Omit<WorkRecord, "id" | "createdAt" | "verification" | "verificationStatus" | "status" | "verificationMetadata">;
 
 export function fallbackVerification(input: Pick<WorkerVerificationInput, "workerName" | "jobType">): VerificationReport {
   return {

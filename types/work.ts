@@ -1,4 +1,20 @@
 export type VerificationStatus = "Verified" | "Pending review" | "Needs review";
+export type JobStatus = "Pending Verification" | "Verified" | "Rejected" | "Needs Revision";
+
+export interface VerificationHistoryEntry {
+  action: "Approved" | "Rejected" | "Requested changes" | "Submitted";
+  timestamp: string;
+  contractorName: string;
+  reason?: string;
+}
+
+export interface VerificationMetadata {
+  verificationId?: string;
+  verificationTimestamp?: string;
+  contractorName: string;
+  contractorCompany?: string;
+  history: VerificationHistoryEntry[];
+}
 
 export interface VerificationReport {
   summary: string;
@@ -37,8 +53,10 @@ export interface WorkRecord {
   state?: string;
   date: string;
   description: string;
+  status: JobStatus;
   verificationStatus: VerificationStatus;
   verification: VerificationReport;
+  verificationMetadata: VerificationMetadata;
   createdAt: string;
 }
 

@@ -28,7 +28,7 @@ function isVerificationInput(value: unknown): value is WorkerVerificationInput {
 }
 
 export async function POST(request: NextRequest) {
-  let body: { worker?: WorkerVerificationInput; previousWorkHistory?: WorkerVerificationInput[] };
+  let body: { worker?: WorkerVerificationInput; previousWorkHistory?: WorkerVerificationInput[]; contractorVerification?: { contractorName?: string; verificationTimestamp?: string; verificationId?: string } };
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid request body" }, { status: 400 }); }
   if (!isVerificationInput(body.worker)) return NextResponse.json({ error: "Missing or invalid worker information" }, { status: 400 });
 
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
   if (!apiKey) return NextResponse.json({ verification: fallback, fallback: true, reason: "GROK_API_KEY is not configured" });
 
   const history = Array.isArray(body.previousWorkHistory) ? body.previousWorkHistory.slice(0, 25) : [];
-  const prompt = `Analyze this informal worker work record for a digital work passport. Do not claim independent verification of facts. Assess only the completeness and consistency of the information provided. Return the required JSON only.\n\nCurrent work record:\n${JSON.stringify(body.worker)}\n\nPrevious work history (may be empty):\n${JSON.stringify(history)}`;
+  const prompt = `Analyze this contractor-approved informal worker work record for a digital work passport. Do not claim independent verification beyond the supplied contractor confirmation. Assess only the completeness and consistency of the information provided. Look for duplicate jobs, impossible hours, repeated fake submissions, and unrealistic contractor approvals. If suspicious, set verificationStatus to "Needs review"; otherwise use "Verified". Return the required JSON only.\n\nCurrent work record:\n${JSON.stringify(body.worker)}\n\nContractor confirmation:\n${JSON.stringify(body.contractorVerification || {})}\n\nPrevious verified work history (may be empty):\n${JSON.stringify(history)}`;
 
   try {
     const response = await fetch("https://api.x.ai/v1/chat/completions", {
