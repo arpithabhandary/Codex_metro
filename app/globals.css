@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-slate-100; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-[#f7faff] text-slate-800 antialiased; font-family: "DM Sans", sans-serif; }
+  h1, h2, h3 { font-family: "Plus Jakarta Sans", sans-serif; }
+}
+
+@layer utilities {
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.16em] text-blue-600; }
+  .section-title { @apply font-[family-name:'Plus_Jakarta_Sans'] text-2xl font-extrabold tracking-tight text-slate-950 sm:text-3xl; }
+  .grid-pattern { background-image: linear-gradient(rgba(59,130,246,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,.07) 1px, transparent 1px); background-size: 34px 34px; }
+}
